@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios';
 import {filter as _f, debounce as _d} from 'lodash'
 
+const MAX_RETRIES = 5;
+
 class App extends Component {
 
   constructor(props) {
@@ -15,7 +17,6 @@ class App extends Component {
   }
 
   handleChange(event) {
-    console.log(event)
     this.setState({value: event.target.value, loading: true});
     this.handleSubmit();
   }
@@ -43,18 +44,18 @@ class App extends Component {
         duration = 0;
 
         if (a.length === 3) {
-            duration = duration + parseInt(a[0]) * 3600;
-            duration = duration + parseInt(a[1]) * 60;
-            duration = duration + parseInt(a[2]);
+            duration = duration + parseInt(a[0], 10) * 3600;
+            duration = duration + parseInt(a[1], 10) * 60;
+            duration = duration + parseInt(a[2], 10);
         }
 
         if (a.length === 2) {
-            duration = duration + parseInt(a[0]) * 60;
-            duration = duration + parseInt(a[1]);
+            duration = duration + parseInt(a[0], 10) * 60;
+            duration = duration + parseInt(a[1], 10);
         }
 
         if (a.length === 1) {
-            duration = duration + parseInt(a[0]);
+            duration = duration + parseInt(a[0], 10);
         }
         // var h = Math.floor(duration / 3600);
         // var m = Math.floor(duration % 3600 / 60);
@@ -64,7 +65,18 @@ class App extends Component {
 
     const apikey = 'AIzaSyDYwPzLevXauI-kTSVXTLroLyHEONuF9Rw';
 
-    const getRestults = () => {
+    let retries = 0;
+
+    const getResults = () => {
+      retries++;
+      this.setState({loading: true, retries: retries});
+      console.log('Retry', retries);
+
+      if (retries > MAX_RETRIES) {
+        this.setState({loading: false});
+        return;
+      }
+
       axios.get(
           'https://www.googleapis.com/youtube/v3/search', {
             params: {
@@ -77,7 +89,6 @@ class App extends Component {
           }).then((data) => {
 
             if (data.data.items.length > 0) {
-              console.log(data.data.items);
               let calls = [];
               for (var i = 0; i < data.data.items.length; i++) {
                   var url1 = "https://www.googleapis.com/youtube/v3/videos?id=" + data.data.items[i].id.videoId + "&key=AIzaSyDYwPzLevXauI-kTSVXTLroLyHEONuF9Rw&part=snippet,contentDetails";
@@ -109,19 +120,21 @@ class App extends Component {
 
                 this.setState({ loading: false, results: results });
                 var elmnt = document.querySelector('.results')
-                elmnt.scrollIntoView();
+                setTimeout(function () {
+                  elmnt.scrollIntoView();
+                }, 300);
 
                 if(results.length === 0) {
-                  getRestults();
+                  getResults();
                 }
               });
             } else {
-              getRestults();
+              getResults();
             }
           });
     }
 
-    getRestults();
+    getResults();
   }
 
 
@@ -132,26 +145,29 @@ class App extends Component {
         <h1>while you wait...</h1>
         <form>
           <aside className="loading">{this.state.loading ? 'loading...' : ''}</aside>
-          <aside className="description">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum </aside>
+          <aside className="description">For a build, your girlfriend, food to be delivered, a build, your wife, the vet, the bus, food to be delivered, a build, your girlfriend, food to be delivered, a build, your girlfriend, food to be delivered...</aside>
           <p className="freeminutes">I have about <span>
             <input className="slider" type="range" min="1" max="60" value={this.state.timewehave} onChange={this.handleTimeChange} step="1" />
           </span><br /><span className="timewehave">{this.state.timewehave}</span> <br />free minutes for...</p>
           {/*<input type="text" value={this.state.value} onChange={this.handleChange} />*/}
 
-          <ul className="type">
-            <li><input id="typeCheckBox1" type="checkbox" value="fun" onChange={this.handleChange} /> <label htmlFor="typeCheckBox1">fun</label></li>
-            <li><input id="typeCheckBox2" type="checkbox" value="geek" onChange={this.handleChange} /> <label htmlFor="typeCheckBox2">geek</label></li>
-            <li><input id="typeCheckBox3" type="checkbox" value="other" onChange={this.handleChange} /> <label htmlFor="typeCheckBox3">other</label></li>
-            <li><input id="typeCheckBox4" type="checkbox" value="fun" onChange={this.handleChange} /> <label htmlFor="typeCheckBox4">fun</label></li>
-            <li><input id="typeCheckBox5" type="checkbox" value="geek" onChange={this.handleChange} /> <label htmlFor="typeCheckBox5">geek</label></li>
-            <li><input id="typeCheckBox6" type="checkbox" value="other" onChange={this.handleChange} /> <label htmlFor="typeCheckBox6">other</label></li>
-          </ul>
-          <p className="stuff">stuff</p>
+          {!this.state.loading ? (<ul className="type">
+            <li><input id="typeCheckBox1" type="checkbox" value="funny videos" onChange={this.handleChange} /> <label htmlFor="typeCheckBox1">fun</label></li>
+            <li><input id="typeCheckBox2" type="checkbox" value="geek news" onChange={this.handleChange} /> <label htmlFor="typeCheckBox2">geek</label></li>
+            <li><input id="typeCheckBox3" type="checkbox" value="random music" onChange={this.handleChange} /> <label htmlFor="typeCheckBox3">music</label></li>
+            <li><input id="typeCheckBox4" type="checkbox" value="tech news" onChange={this.handleChange} /> <label htmlFor="typeCheckBox4">tech</label></li>
+            <li><input id="typeCheckBox5" type="checkbox" value="physics lessons" onChange={this.handleChange} /> <label htmlFor="typeCheckBox5">physics</label></li>
+            <li><input id="typeCheckBox6" type="checkbox" value="math lessons" onChange={this.handleChange} /> <label htmlFor="typeCheckBox6">math</label></li>
+            <li><input id="typeCheckBox7" type="checkbox" value="live streaming" onChange={this.handleChange} /> <label htmlFor="typeCheckBox7">game</label></li>
+          </ul>) : ''}
+          {this.state.loading ? <div className="loader"><div className="ball-scale-ripple"><div></div></div></div> : ''}
 
           <ul className="results">
             {this.state.results && this.state.results.map(function(listValue, index){
               return <li key={index}>{listValue}</li>;
             })}
+
+            {this.state.results && this.state.results.length === 0 && this.state.retries > MAX_RETRIES ? <li className="noluck">Sorry, no luck <span>😢</span> &nbsp;Please, try again <span>👆</span></li>: ''}
           </ul>
 
         </form>
