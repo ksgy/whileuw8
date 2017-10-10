@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+
+*{
+  -webkit-box-sizing: border-box; /* Android ≤ 2.3, iOS ≤ 4 */
+     -moz-box-sizing: border-box; /* Firefox ≤ 28 */
+          box-sizing: border-box; /* Chrome, Firefox 29+, IE 8+, Opera, Safari 5.1 */
+}
+
+/*
+font-family: 'Crimson Text', serif;
+font-family: 'Quicksand', sans-serif;
+*/
+
+/*//*/
+input[type=range].slider {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 0.7px 0;
+}
+input[type=range].slider:focus {
+  outline: none;
+}
+input[type=range].slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: rgba(212, 214, 216, 0.29);
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+input[type=range].slider::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 0px solid #261e00;
+  height: 27px;
+  width: 18px;
+  border-radius: 0px;
+  background: rgba(144, 149, 152, 0.93);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -0.7px;
+}
+input[type=range].slider:focus::-webkit-slider-runnable-track {
+  background: rgba(212, 214, 216, 0.29);
+}
+input[type=range].slider::-moz-range-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: rgba(212, 214, 216, 0.29);
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+input[type=range].slider::-moz-range-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 0px solid #261e00;
+  height: 27px;
+  width: 18px;
+  border-radius: 0px;
+  background: rgba(144, 149, 152, 0.93);
+  cursor: pointer;
+}
+input[type=range].slider::-ms-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range].slider::-ms-fill-lower {
+  background: rgba(212, 214, 216, 0.29);
+  border: 0px solid #010101;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range].slider::-ms-fill-upper {
+  background: rgba(212, 214, 216, 0.29);
+  border: 0px solid #010101;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range].slider::-ms-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 0px solid #261e00;
+  height: 27px;
+  width: 18px;
+  border-radius: 0px;
+  background: rgba(144, 149, 152, 0.93);
+  cursor: pointer;
+  height: 25.6px;
+}
+input[type=range].slider:focus::-ms-fill-lower {
+  background: rgba(212, 214, 216, 0.29);
+}
+input[type=range].slider:focus::-ms-fill-upper {
+  background: rgba(212, 214, 216, 0.29);
+}
+/*//*/
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  padding: 3rem;
+}
+
+.description {
+  padding: 2rem 2.5rem;
+  margin: 2rem;
+  background-color: #fcfcfc;
+  font-size: 1.2rem;
+}
+
+h1 {
+  font-family: 'Crimson Text', serif;
+  text-align: center;
+  font-size: 3rem;
+  font-variant: small-caps;
+  margin: 0;
+}
+
+.freeminutes {
+  text-align: center;
+  line-height: 3rem;
+  font-size: 1rem;
+}
+
+.timewehave {
+  font-size: 5rem;
+  line-height: 5.5rem;
+}
+
+.results,
+.type {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+
+.type li {
+  display: block;
+  flex-grow: 1;
+  position: relative;
+  height: 6rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 1rem;
+  min-width: 10rem;
+}
+
+.type li input {
+  position: absolute;
+  width: 100%;
+  height: 6rem;
+}
+
+.type li label {
+  position: absolute;
+  width: 100%;
+  color: #494A4C;
+  background-color: #ddd;
+  line-height: 6rem;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.stuff {
+  text-align: center;
+  margin-top: 4rem
+}
+
+.results {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #ccc;
+}
+.results li {
+  display: block;
+  flex-grow: 1;
+  width: 100%;
+}
+.results li img {
+  width: 100%;
+}
+
+.results li a {
+  text-decoration: none;
+  color: inherit;
+
+}
+.results li .title {
+  font-size: 1.5rem;
+  color: #494A4C;
+}
