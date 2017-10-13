@@ -145,8 +145,15 @@ class App extends Component {
         <h1>while you wait...</h1>
         <form>
           <aside className="loading">{this.state.loading ? 'loading...' : ''}</aside>
-          <aside className="description">For a build, your girlfriend, food to be delivered, a build, your wife, the vet, the bus, food to be delivered, a build, your girlfriend, food to be delivered, a build, your girlfriend, food to be delivered...</aside>
-          <p className="freeminutes">I have about <span>
+          <aside className="description">
+            For a build,
+            for your girlfriend to finish her makeup,
+            for food to be delivered,
+            for your wife,
+            for the vet,
+            for the next train while at work...
+          </aside>
+          <p className="freeminutes">...and you have about <span>
             <input className="slider" type="range" min="1" max="60" value={this.state.timewehave} onChange={this.handleTimeChange} step="1" />
           </span><br /><span className="timewehave">{this.state.timewehave}</span> <br />free minutes for...</p>
           {/*<input type="text" value={this.state.value} onChange={this.handleChange} />*/}
