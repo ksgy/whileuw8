@@ -144,7 +144,6 @@ class App extends Component {
       <div>
         <h1>while you wait...</h1>
         <form>
-          <aside className="loading">{this.state.loading ? 'loading...' : ''}</aside>
           <aside className="description">
             For a build,
             for your girlfriend to finish her makeup,
