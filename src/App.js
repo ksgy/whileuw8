@@ -63,7 +63,7 @@ class App extends Component {
         return duration;
     }
 
-    const apikey = 'AIzaSyDYwPzLevXauI-kTSVXTLroLyHEONuF9Rw';
+    const apikey = 'AIzaSyAscLlS2YJOVxCCmSF-OezZKvyurlsYaiQ';
 
     let retries = 0;
 
