@@ -63,13 +63,13 @@ class App extends Component {
         return duration;
     }
 
-    const apikey = 'AIzaSyAscLlS2YJOVxCCmSF-OezZKvyurlsYaiQ';
+    const apikey = 'no :P';
 
     let retries = 0;
 
     const getResults = () => {
       retries++;
-      this.setState({loading: true, retries: retries});
+      this.setState({loading: true, retries: retries, error: false});
       console.log('Retry', retries);
 
       if (retries > MAX_RETRIES) {
@@ -131,7 +131,11 @@ class App extends Component {
             } else {
               getResults();
             }
-          });
+          }).catch(e => {
+          this.setState({loading: false, error: true});
+          const elmnt = document.getElementById("video");
+          elmnt.scrollIntoView();
+      });
     }
 
     getResults();
@@ -157,7 +161,7 @@ class App extends Component {
           </span><br /><span className="timewehave">{this.state.timewehave}</span> <br />free minutes for...</p>
           {/*<input type="text" value={this.state.value} onChange={this.handleChange} />*/}
 
-          {!this.state.loading ? (<ul className="type">
+          {!this.state.loading && !this.state.error ? (<ul className="type">
             <li><input id="typeCheckBox1" type="checkbox" value="funny videos" onChange={this.handleChange} /> <label htmlFor="typeCheckBox1">fun</label></li>
             <li><input id="typeCheckBox2" type="checkbox" value="geek news" onChange={this.handleChange} /> <label htmlFor="typeCheckBox2">geek</label></li>
             <li><input id="typeCheckBox3" type="checkbox" value="random music" onChange={this.handleChange} /> <label htmlFor="typeCheckBox3">music</label></li>
@@ -174,6 +178,12 @@ class App extends Component {
             })}
 
             {this.state.results && this.state.results.length === 0 && this.state.retries > MAX_RETRIES ? <li className="noluck">Sorry, no luck <span>😢</span> &nbsp;Please, try again <span>👆</span></li>: ''}
+              {this.state.error && <li id="video">
+                  <iframe width="100%" height="400" src="https://www.youtube.com/embed/oHg5SJYRHA0?controls=0&autoplay=1"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen></iframe>
+              </li>}
           </ul>
 
         </form>
