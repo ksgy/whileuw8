@@ -147,46 +147,6 @@ class App extends Component {
     return (
       <div>
         <h1>while you wait...</h1>
-        <form>
-          <aside className="description">
-            For a build,
-            for your girlfriend to finish her makeup,
-            for food to be delivered,
-            for your wife,
-            for the vet,
-            for the next train while at work...
-          </aside>
-          <p className="freeminutes">...and you have about <span>
-            <input className="slider" type="range" min="1" max="60" value={this.state.timewehave} onChange={this.handleTimeChange} step="1" />
-          </span><br /><span className="timewehave">{this.state.timewehave}</span> <br />free minutes for...</p>
-          {/*<input type="text" value={this.state.value} onChange={this.handleChange} />*/}
-
-          {!this.state.loading && !this.state.error ? (<ul className="type">
-            <li><input id="typeCheckBox1" type="checkbox" value="funny videos" onChange={this.handleChange} /> <label htmlFor="typeCheckBox1">fun</label></li>
-            <li><input id="typeCheckBox2" type="checkbox" value="geek news" onChange={this.handleChange} /> <label htmlFor="typeCheckBox2">geek</label></li>
-            <li><input id="typeCheckBox3" type="checkbox" value="random music" onChange={this.handleChange} /> <label htmlFor="typeCheckBox3">music</label></li>
-            <li><input id="typeCheckBox4" type="checkbox" value="tech news" onChange={this.handleChange} /> <label htmlFor="typeCheckBox4">tech</label></li>
-            <li><input id="typeCheckBox5" type="checkbox" value="physics lessons" onChange={this.handleChange} /> <label htmlFor="typeCheckBox5">physics</label></li>
-            <li><input id="typeCheckBox6" type="checkbox" value="math lessons" onChange={this.handleChange} /> <label htmlFor="typeCheckBox6">math</label></li>
-            <li><input id="typeCheckBox7" type="checkbox" value="live streaming" onChange={this.handleChange} /> <label htmlFor="typeCheckBox7">game</label></li>
-          </ul>) : ''}
-          {this.state.loading ? <div className="loader"><div className="ball-scale-ripple"><div></div></div></div> : ''}
-
-          <ul className="results">
-            {this.state.results && this.state.results.map(function(listValue, index){
-              return <li key={index}>{listValue}</li>;
-            })}
-
-            {this.state.results && this.state.results.length === 0 && this.state.retries > MAX_RETRIES ? <li className="noluck">Sorry, no luck <span>😢</span> &nbsp;Please, try again <span>👆</span></li>: ''}
-              {this.state.error && <li id="video">
-                  <iframe width="100%" height="400" src="https://www.youtube.com/embed/oHg5SJYRHA0?controls=0&autoplay=1"
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen></iframe>
-              </li>}
-          </ul>
-
-        </form>
       </div>
     );
   }
