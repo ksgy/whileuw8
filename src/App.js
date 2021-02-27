@@ -15,6 +15,13 @@ function App() {
 
     useEffect(
         () => {
+            window.location.hash = things.length - 1;
+        },
+        [things]
+    );
+
+    useEffect(
+        () => {
             inputRef.current.focus();
         },
         [inputRef]
@@ -29,25 +36,30 @@ function App() {
             addThing(newThings);
             setNewThing('');
             localStorage.setItem(LS, JSON.stringify(newThings));
+
         }
     }
 
     const renderNewThings = things.map((thing, index) => {
-        return <div key={index.toString() + thing}>{thing}</div>
+        return <li key={index.toString() + thing} id={index.toString()}>{thing}</li>
     })
 
     return (
         <div>
-            <h1>while you wait for covid to end</h1>
-            <h2>plan your next adventure/whatever once it's end!</h2>
-            <input
-                ref={inputRef}
-                type="text"
-                placeholder="I want to..."
-                onKeyPress={addThingHandler}
-                value={newThing}
-                onChange={e => setNewThing(e.target.value)} />
-            {renderNewThings}
+            <div className="head">
+                <h1>while you wait for covid to end</h1>
+                <h2>plan your next adventure/whatever once it's end!</h2>
+                <input
+                    ref={inputRef}
+                    type="text"
+                    placeholder="I want to..."
+                    onKeyPress={addThingHandler}
+                    value={newThing}
+                    onChange={e => setNewThing(e.target.value)} />
+            </div>
+            <ul id="whileuw8_things">
+                {renderNewThings}
+            </ul>
         </div>
     );
 }
