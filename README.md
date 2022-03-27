@@ -1,5 +1,13 @@
 # While you wait...
 
-For bored devs who wait ages for `cordova`, `x-code`, `gradle` or any boring build.
-
 http://whileuw8.com
+
+### Build
+`yarn build`
+
+### Deploy
+```bash
+mv build/* .
+rm -rf ./build
+```
+Then `commit` and `push`
