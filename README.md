@@ -7,7 +7,7 @@ http://whileuw8.com
 
 ### Deploy
 ```bash
-mv build/* .
+cp -R build/* .
 rm -rf ./build
 ```
 Then `commit` and `push`
