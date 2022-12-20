@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import illustration from './illustration.png';
+import illustration from './illustration2.png';
 import './App.css';
 
 const videos = [
@@ -15,11 +15,14 @@ const videos = [
   'cMkP59QHm1Y',
   'XvuREbgYurM',
   'JpgEtYUsdE4',
+  '1KJdkYJmYWE',
+  'gcZ1gzFSSNE',
+  'PHigKldeXTw'
 ]
 
 function App() {
 
-  const [isGenerated, setGenerated] = useState(null);
+  const [isGenerated, setGenerated] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
   const generate = () => {
@@ -40,31 +43,33 @@ function App() {
   const generateHappinessText = isGenerated ? 'Generate again!' : 'Generate Happiness!';
   const renderNotHappy = !isLoading && isGenerated && <h3>Not happy yet?</h3>
   const renderLoading = isLoading && <div className="lds-ripple"><div></div><div></div></div>;
-  const renderResult = isGenerated ?
+  const renderResult = isGenerated &&
     (<iframe width="100%" height="100%" src={'https://www.youtube.com/embed/' + isGenerated} title="YouTube video player"
   frameBorder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen/>) : <img src={illustration} alt="illustration" className={'illustration-small'} />;
+  allowFullScreen/>);
   return (
     <div className="App">
       <header className="App-header">
         <img src={illustration} alt="illustration" className={'illustration'} />
         <h1>While You Wait</h1>
-        <h2>Quarantine Edition</h2>
+        {/*<h2>Quarantine Edition</h2>*/}
         <a href="#home" onClick={go}>Go</a>
       </header>
       <main id="home">
         <article>
-          <p>We all know how it feels to be in quarantine because of COVID-19. Even restrictions are getting lifted, many people still have to quarantine, because of their immune system, or any other medical condition.</p>
-          <p>Realising how badly quarantine can affect people's mental health, I made this small page to bring some joy, happiness - some source of positive energy into their/our lives</p>
-          <p>The videos are coming from a curated list, so if you'd like to recommend one, you can do it <a href="https://forms.gle/k8ubcCDU5rVKX4jz5" target="_blank">here</a>.</p>
+          <p>During the COVID-19 pandemic, we all experienced the challenges of quarantine.</p>
+          <p>Even though some restrictions have been lifted, many people continue to struggle with their mental health.</p>
+          <p>In an effort to bring some positivity and happiness into our lives, I have compiled a list of videos as a source of positive energy.</p>
+          <p>If you have a recommendation for a video to add, please let me know <a href="https://forms.gle/k8ubcCDU5rVKX4jz5" target="_blank">here</a>.</p>
         </article>
-        {renderNotHappy}
         {renderLoading}
-        <button onClick={generate}>{generateHappinessText}</button>
+        {!isGenerated && <button onClick={generate}>{generateHappinessText}</button>}
         <div className="result">
           {renderResult}
         </div>
+        {renderNotHappy}
+        {isGenerated && <button onClick={generate}>{generateHappinessText}</button>}
       </main>
     </div>
   );

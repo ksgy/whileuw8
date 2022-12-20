@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300&family=Roboto+Condensed:wght@700&family=VT323&display=swap');
 .App {
   text-align: center;
 }
@@ -14,6 +15,8 @@
 }
 
 body, html {
+  font-family: 'Inknut Antiqua', serif;
+  text-shadow: 1px 1px 1px #000;
   background-color: #2d0f52;
   background-image: -webkit-linear-gradient(top, #4d0b59, #2d0f52); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
   background-image:         linear-gradient(to bottom, #4d0b59, #2d0f52); /* Chrome 26, Firefox 16+, IE 10+, Opera */
@@ -32,8 +35,8 @@ body, html {
 }
 
 .App-header h1 {
-   font-size: 2rem;
-  margin: 1rem 0 1rem 0
+  font-size: 2rem;
+  margin: 1rem 0 4rem 0
 }
 
 .App-header h2 {
@@ -57,6 +60,8 @@ body, html {
   color: white;
   font-weight: bold;
   font-size: 2.2rem;
+  font-family: sans-serif;
+  text-shadow: none;
   border-radius: 5rem; /* Android 2.1+, Chrome, Firefox 4+, IE 9+, iOS 4+, Opera 10.50+, Safari 5+ */
   background-clip: padding-box; /* Android 2.2+, Chrome, Firefox 4+, IE 9+, iOS 4+, Opera 10.50+, Safari 4+ */
   -webkit-box-shadow: 0px 5px 25px 10px #f74d74; /* Android 2.3+, iOS 4.0.2-4.2, Safari 3-4 */
@@ -91,11 +96,13 @@ body, html {
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+article {
+  margin-bottom: 2rem;
+}
 article p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: normal;
-  margin: 0 2rem 1.2rem 2rem;
+  margin: 0 1.5rem 1.2rem 1.5rem;
   line-height: 1.6rem;
   color: white;
   text-align: left;
@@ -113,7 +120,7 @@ article p:last-child {
 
 h3 {
   font-size: 1rem;
-  margin: 1rem 0
+  margin: 2rem 0 0 0
 }
 
 button {
@@ -128,10 +135,16 @@ button {
   color: white;
   font-size: 1rem;
   font-weight: bold;
+  margin: 1rem 0 2rem 0;
 }
-
+.illustration {
+  width: 40%;
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 2rem;
+}
 .illustration-small {
-  width: 25%;
+  width: 20%;
   height: auto;
 }
 
