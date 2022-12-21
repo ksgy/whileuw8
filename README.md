@@ -1,6 +1,6 @@
 # While you wait...
 
-http://whileuw8.com
+https://whileuw8.com
 
 ### Build
 `yarn build`
